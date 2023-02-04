@@ -1,4 +1,4 @@
-package com.wallpapersetter
+package com.wallpapersetter.adapters
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -6,13 +6,13 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import com.squareup.picasso.Picasso
+import com.wallpapersetter.MainActivity
+import com.wallpapersetter.R
 import org.json.JSONArray
 import org.json.JSONObject
 
-
+//адаптер для картинок одной категории - 2й экран приложения
 class  CategoryAdapter(var context: Context, var items: JSONArray, var MainActivity: MainActivity) : BaseAdapter() {
-
-
     override fun getCount(): Int {
         return items.length()
     }
@@ -30,7 +30,6 @@ class  CategoryAdapter(var context: Context, var items: JSONArray, var MainActiv
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.fragment_category_adapter, parent, false)
         }
-
         val image: ImageView = convertView?.findViewById(R.id.CategoryImage) as ImageView
         val imageObject = items[position] as JSONObject//одно изображение
         val url = imageObject.get("webformatURL") as String//ссылка на изображение
@@ -38,11 +37,8 @@ class  CategoryAdapter(var context: Context, var items: JSONArray, var MainActiv
 
         image.setOnClickListener() {
             val urlBigImage = imageObject.get("webformatURL") as String//ссылка на изображение
-            MainActivity.switchToSetupWallaperFragment(urlBigImage)
+            MainActivity.switchToSetupWallpaperFragment(urlBigImage)//переход на 3й фрагмент с выбранной картинкой
         }
-
         return convertView
     }
-
-
 }

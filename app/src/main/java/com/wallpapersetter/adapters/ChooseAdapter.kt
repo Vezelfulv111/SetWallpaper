@@ -1,4 +1,4 @@
-package com.wallpapersetter
+package com.wallpapersetter.adapters
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -7,15 +7,17 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
+import com.wallpapersetter.MainActivity
+import com.wallpapersetter.R
 
 
+//адаптер для списка картинок, разделенных по категориям - 1й экран
 class  ChooseAdapter(
     var context: Context,
     var items: ArrayList<String>,
     var category: ArrayList<String>,
     var MainActivity: MainActivity
 ) : BaseAdapter() {
-
 
     override fun getCount(): Int {
         return items.size
@@ -42,7 +44,7 @@ class  ChooseAdapter(
 
 
         image.setOnClickListener() {
-            MainActivity.switchToCategoryFragment(category[position])
+            MainActivity.switchToCategoryFragment(category[position])//переход на экран с картинками из 1й категории
         }
 
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:tag="SetupWallpaperFragment"
     android:theme="@style/ThemeOverlay.WallpaperSetter.FullscreenContainer"
-    tools:context=".MainScreenFragment">
+    tools:context=".fragments.MainScreenFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

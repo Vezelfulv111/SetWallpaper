@@ -7,16 +7,30 @@
     android:layout_height="match_parent"
     android:tag="CategoryScreenFragment"
     android:theme="@style/ThemeOverlay.WallpaperSetter.FullscreenContainer"
-    tools:context=".CategoryScreenFragment">
+    tools:context=".fragments.CategoryScreenFragment">
 
 
-    <GridView
-        android:id="@+id/simpleGridView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:footerDividersEnabled="false"
-        android:padding="1dp"
-        android:numColumns="2" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/chosenCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="7dp"
+            android:text="Выбранная категория:"
+            android:textSize="20sp" />
+
+        <GridView
+            android:id="@+id/simpleGridView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:footerDividersEnabled="false"
+            android:numColumns="2"
+            android:padding="1dp" />
+    </LinearLayout>
 
 
 </FrameLayout>

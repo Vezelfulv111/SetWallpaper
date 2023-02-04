@@ -1,4 +1,4 @@
-package com.wallpapersetter
+package com.wallpapersetter.fragments
 
 
 import android.os.Bundle
@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.GridView
 import androidx.fragment.app.Fragment
+import com.wallpapersetter.MainActivity
+import com.wallpapersetter.R
+import com.wallpapersetter.adapters.ChooseAdapter
 import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONObject
@@ -24,9 +27,12 @@ class MainScreenFragment : Fragment() {
         return view
     }
 
+    //функция API запроса 1й картинки из каждой категории.
+    //Функция вызывается n раз - где n - количество категорий.
+    //С каждой категории выбирается 1 картинка и отображается в GridView
     private fun updateBin(id: Int, UrlList: ArrayList<String>, CategoryList: ArrayList<String>) {
         val client = OkHttpClient()
-        val  key = "33106230-b104905cd7ff74ed17e2229af"
+        val key = resources.getString(R.string.requestKey)
         val categoryArray = resources.getStringArray(R.array.Categories)
         val category = categoryArray[id]
         val requestUrl ="https://pixabay.com/api/?key=$key&category=$category&safesearch=true&per_page=3"
@@ -46,19 +52,19 @@ class MainScreenFragment : Fragment() {
                     else {
                         val str = response.body!!.string()
                         val jsonData = JSONObject(str)//получили json массив
-                        val hits = jsonData.get("hits") as JSONArray
+                        val hits = jsonData.get("hits") as JSONArray//выделим массив изображений
                         val imageObject = hits[0] as JSONObject//одно изображение
                         val imageUrl = imageObject.get("webformatURL") as String//ссылка на изображение
-                        UrlList.add(imageUrl)
+                        UrlList.add(imageUrl)//добавим в список ссылку на выбранную картинку
                         CategoryList.add(category)
-
-                        (activity as MainActivity).runOnUiThread {
+                        (activity as MainActivity).runOnUiThread {//для работы с интерфейсом необходимо перейти на основной поток
                             val simpleGrid = view?.findViewById(R.id.mainGridView) as GridView
                             val customAdapter = ChooseAdapter(
                                 view!!.context,
                                 UrlList,
                                 CategoryList,
-                                activity as MainActivity)
+                                activity as MainActivity
+                            )
                             simpleGrid.adapter = customAdapter
                         }
                     }

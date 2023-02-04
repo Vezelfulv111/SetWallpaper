@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Wallpaper Setter</string>
+    <string name="requestKey">33106230-b104905cd7ff74ed17e2229af</string>
+
 
     <string-array
         name="Categories">

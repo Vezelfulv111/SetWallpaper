@@ -19,28 +19,12 @@ class CategoryScreenFragment : Fragment() {
 
         var categoryNum = 0
         categoryNum = arguments?.getInt("categoryNum", 0)!!//получили выбранную категорию при запуске фрагмента
-        SetImages(categoryNum)
-
-        val logos = intArrayOf(
-            R.drawable.imageerror,
-            R.drawable.imageerror,
-            R.drawable.imageerror,
-            R.drawable.imageerror,
-            R.drawable.imageerror,
-            R.drawable.imageerror,
-            R.drawable.imageerror,
-            R.drawable.imageerror,
-        )
-
-
-        //val simpleGrid = view.findViewById(R.id.simpleGridView) as GridView
-        //val customAdapter = CategoryAdapter(view.context, logos)
-        //simpleGrid.adapter = customAdapter
+        setImages(categoryNum)
 
         return view
     }
 
-    private fun SetImages(id : Int) {
+    private fun setImages(id : Int) {
         val client = OkHttpClient()
         val key = "33106230-b104905cd7ff74ed17e2229af"
         val categoryArray = resources.getStringArray(R.array.Categories)

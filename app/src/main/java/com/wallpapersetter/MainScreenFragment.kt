@@ -5,9 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
+import android.widget.GridView
 import androidx.fragment.app.Fragment
-import com.squareup.picasso.Picasso
 import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONObject
@@ -15,45 +14,22 @@ import java.io.IOException
 
 
 class MainScreenFragment : Fragment() {
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.fragment_main_screen, container, false)
-        val BUTTON_IDS = intArrayOf(
-            R.id.imageButton1,
-            R.id.imageButton2,
-            R.id.imageButton3,
-            R.id.imageButton4,
-            R.id.imageButton5,
-            R.id.imageButton6,
-        )
-        val buttonList: ArrayList<ImageButton> = ArrayList(6)
-        for (id in BUTTON_IDS.indices) {
-            val button = view.findViewById<View>(BUTTON_IDS[id]) as ImageButton
-            button.setOnClickListener {
-               var categoryNum : Int = 0//номер категории, которую выбрал пользователь при нажатии на кнопку
-                when ( it.id) {
-                    R.id.imageButton1 -> categoryNum=1//1й номер - была выбрана категория backgrounds
-                    R.id.imageButton2 -> categoryNum=2
-                    R.id.imageButton3 -> categoryNum=3
-                    R.id.imageButton4 -> categoryNum=4
-                    R.id.imageButton5 -> categoryNum=5
-                    R.id.imageButton6 -> categoryNum=6
-                }
-                (activity as MainActivity).switchToCategoryFragment(categoryNum)
-            }
-            buttonList.add(button)
-            updateBin(id, BUTTON_IDS)
+        val urlList: ArrayList<String> = ArrayList(6)
+        val categoryList: ArrayList<String> = ArrayList(6)
+        for (id in 0 until 6) {
+            updateBin(id, urlList, categoryList)
         }
         return view
-}
+    }
 
-    private fun updateBin(id : Int, array: IntArray) {
+    private fun updateBin(id: Int, UrlList: ArrayList<String>, CategoryList: ArrayList<String>) {
         val client = OkHttpClient()
         val  key = "33106230-b104905cd7ff74ed17e2229af"
         val categoryArray = resources.getStringArray(R.array.Categories)
         val category = categoryArray[id]
         val requestUrl ="https://pixabay.com/api/?key=$key&category=$category&safesearch=true&per_page=3"
-        var imageUrl: String
         val request: Request = Request.Builder()
             .url(requestUrl)
             .get()
@@ -66,22 +42,25 @@ class MainScreenFragment : Fragment() {
                 response.use {
                     if (!response.isSuccessful) {
                         throw IOException("Unexpected code $response")
-
-                    } else {
+                    }
+                    else {
                         val str = response.body()!!.string()
                         val jsonData = JSONObject(str)//получили json массив
                         val hits = jsonData.get("hits") as JSONArray
                         val imageObject = hits[0] as JSONObject//одно изображение
-                        imageUrl = imageObject.get("webformatURL") as String//ссылка на изображение
+                        val imageUrl = imageObject.get("webformatURL") as String//ссылка на изображение
+                        UrlList.add(imageUrl)
+                        CategoryList.add(category)
 
-                        if (imageUrl.isNotEmpty()) {
-                            val imageButton = view?.findViewById<ImageButton>(array[id])
-                            (activity as MainActivity).runOnUiThread {
-                                Picasso.get().load(imageUrl).resize(300, 300).centerCrop()
-                                    .into(imageButton)
-                            }
+                        (activity as MainActivity).runOnUiThread {
+                            val simpleGrid = view?.findViewById(R.id.mainGridView) as GridView
+                            val customAdapter = ChooseAdapter(
+                                view!!.context,
+                                UrlList,
+                                CategoryList,
+                                activity as MainActivity)
+                            simpleGrid.adapter = customAdapter
                         }
-
                     }
                 }
             }

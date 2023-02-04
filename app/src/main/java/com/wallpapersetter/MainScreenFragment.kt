@@ -1,5 +1,6 @@
 package com.wallpapersetter
 
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,17 +29,17 @@ class MainScreenFragment : Fragment() {
         val buttonList: ArrayList<ImageButton> = ArrayList(6)
         for (id in BUTTON_IDS.indices) {
             val button = view.findViewById<View>(BUTTON_IDS[id]) as ImageButton
-            button.setOnClickListener(){
+            button.setOnClickListener {
+               var categoryNum : Int = 0//номер категории, которую выбрал пользователь при нажатии на кнопку
                 when ( it.id) {
-                    R.id.imageButton1 -> {}
-                    R.id.imageButton2 -> {}
-                    R.id.imageButton3 -> {}
-                    R.id.imageButton4 -> {}
-                    R.id.imageButton5 -> {}
-                    R.id.imageButton6 -> {}
+                    R.id.imageButton1 -> categoryNum=1//1й номер - была выбрана категория backgrounds
+                    R.id.imageButton2 -> categoryNum=2
+                    R.id.imageButton3 -> categoryNum=3
+                    R.id.imageButton4 -> categoryNum=4
+                    R.id.imageButton5 -> categoryNum=5
+                    R.id.imageButton6 -> categoryNum=6
                 }
-
-
+                (activity as MainActivity).switchToCategoryFragment(categoryNum)
             }
             buttonList.add(button)
             updateBin(id, BUTTON_IDS)
@@ -75,7 +76,7 @@ class MainScreenFragment : Fragment() {
 
                         if (imageUrl.isNotEmpty()) {
                             val imageButton = view?.findViewById<ImageButton>(array[id])
-                            activity?.runOnUiThread {
+                            (activity as MainActivity).runOnUiThread {
                                 Picasso.get().load(imageUrl).resize(300, 300).centerCrop()
                                     .into(imageButton)
                             }

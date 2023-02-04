@@ -11,7 +11,6 @@ import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
-import java.util.Locale.Category
 
 
 class MainScreenFragment : Fragment() {
@@ -27,8 +26,20 @@ class MainScreenFragment : Fragment() {
             R.id.imageButton6,
         )
         val buttonList: ArrayList<ImageButton> = ArrayList(6)
-        for (id in 0.. BUTTON_IDS.size-1) {
+        for (id in BUTTON_IDS.indices) {
             val button = view.findViewById<View>(BUTTON_IDS[id]) as ImageButton
+            button.setOnClickListener(){
+                when ( it.id) {
+                    R.id.imageButton1 -> {}
+                    R.id.imageButton2 -> {}
+                    R.id.imageButton3 -> {}
+                    R.id.imageButton4 -> {}
+                    R.id.imageButton5 -> {}
+                    R.id.imageButton6 -> {}
+                }
+
+
+            }
             buttonList.add(button)
             updateBin(id, BUTTON_IDS)
         }
@@ -38,10 +49,10 @@ class MainScreenFragment : Fragment() {
     private fun updateBin(id : Int, array: IntArray) {
         val client = OkHttpClient()
         val  key = "33106230-b104905cd7ff74ed17e2229af"
-        val categoryArray = resources.getStringArray(R.array.Categories);
+        val categoryArray = resources.getStringArray(R.array.Categories)
         val category = categoryArray[id]
         val requestUrl ="https://pixabay.com/api/?key=$key&category=$category&safesearch=true&per_page=3"
-        var imageUrl = ""
+        var imageUrl: String
         val request: Request = Request.Builder()
             .url(requestUrl)
             .get()
@@ -64,9 +75,10 @@ class MainScreenFragment : Fragment() {
 
                         if (imageUrl.isNotEmpty()) {
                             val imageButton = view?.findViewById<ImageButton>(array[id])
-                            activity?.runOnUiThread(Runnable {
-                                Picasso.get().load(imageUrl).resize(400,400).centerCrop().into(imageButton);
-                            })
+                            activity?.runOnUiThread {
+                                Picasso.get().load(imageUrl).resize(300, 300).centerCrop()
+                                    .into(imageButton)
+                            }
                         }
 
                     }

@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">WallpaperSetter</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string-array
+        name="Categories">
+        <item>backgrounds</item>
+        <item>fashion</item>
+        <item>nature</item>
+        <item>science</item>
+        <item>education</item>
+        <item>feelings</item>
+    </string-array>
 </resources>

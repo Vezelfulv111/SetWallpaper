@@ -1,5 +1,4 @@
 package com.wallpapersetter
-import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -43,7 +42,7 @@ class  ChooseAdapter(
 
 
         image.setOnClickListener() {
-            MainActivity.switchToCategoryFragment(position)
+            MainActivity.switchToCategoryFragment(category[position])
         }
 
 

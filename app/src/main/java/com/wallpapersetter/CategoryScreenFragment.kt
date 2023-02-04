@@ -17,19 +17,17 @@ class CategoryScreenFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.fragment_category_screen, container, false)
 
-        var categoryNum = 0
-        categoryNum = arguments?.getInt("categoryNum", 0)!!//получили выбранную категорию при запуске фрагмента
+        var categoryNum = ""
+        categoryNum = arguments?.getString("categoryNum", "backgrounds")!!//получили выбранную категорию при запуске фрагмента
         setImages(categoryNum)
 
         return view
     }
 
-    private fun setImages(id : Int) {
+    private fun setImages(id: String) {
         val client = OkHttpClient()
         val key = "33106230-b104905cd7ff74ed17e2229af"
-        val categoryArray = resources.getStringArray(R.array.Categories)
-        val category = categoryArray[id-1]
-        val requestUrl ="https://pixabay.com/api/?key=$key&category=$category&safesearch=true&per_page=30"
+        val requestUrl ="https://pixabay.com/api/?key=$key&category=$id&safesearch=true&per_page=30"
         val request: Request = Request.Builder()
             .url(requestUrl)
             .get()

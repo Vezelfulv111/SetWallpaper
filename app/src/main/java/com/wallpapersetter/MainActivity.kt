@@ -26,12 +26,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun switchToCategoryFragment(categoryNum: Int) {
+    fun switchToCategoryFragment(categoryNum: String) {
         val manager = supportFragmentManager
         val fragment = CategoryScreenFragment()
         val transaction = manager.beginTransaction()
         val args = Bundle()
-        args.putInt("categoryNum", categoryNum)
+        args.putString("categoryNum", categoryNum)
         fragment.arguments = args
         transaction.replace(android.R.id.content, fragment).addToBackStack("CategoryScreenFragment")
         transaction.commit()

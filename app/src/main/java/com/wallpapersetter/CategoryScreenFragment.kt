@@ -12,6 +12,7 @@ import org.json.JSONObject
 import java.io.IOException
 
 
+//Фрагмент отображения картинок из выбранной категории
 class CategoryScreenFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -42,12 +43,12 @@ class CategoryScreenFragment : Fragment() {
                         throw IOException("Unexpected code $response")
 
                     } else {
-                        val str = response.body()!!.string()
+                        val str = response.body!!.string()
                         val jsonData = JSONObject(str)//получили json массив
                         val hits = jsonData.get("hits") as JSONArray
                         (activity as MainActivity).runOnUiThread {
                            val simpleGrid = view?.findViewById(R.id.simpleGridView) as GridView
-                           val customAdapter = CategoryAdapter(view!!.context, hits)
+                           val customAdapter = CategoryAdapter(view!!.context, hits, activity as MainActivity)
                            simpleGrid.adapter = customAdapter
                         }
 

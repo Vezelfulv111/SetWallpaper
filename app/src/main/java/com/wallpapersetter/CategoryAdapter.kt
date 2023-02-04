@@ -10,7 +10,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 
-class  CategoryAdapter(var context: Context, var items: JSONArray) : BaseAdapter() {
+class  CategoryAdapter(var context: Context, var items: JSONArray, var MainActivity: MainActivity) : BaseAdapter() {
 
 
     override fun getCount(): Int {
@@ -36,6 +36,10 @@ class  CategoryAdapter(var context: Context, var items: JSONArray) : BaseAdapter
         val url = imageObject.get("webformatURL") as String//ссылка на изображение
         Picasso.get().load(url).resize(300, 300).centerCrop().into(image)
 
+        image.setOnClickListener() {
+            val urlBigImage = imageObject.get("webformatURL") as String//ссылка на изображение
+            MainActivity.switchToSetupWallaperFragment(urlBigImage)
+        }
 
         return convertView
     }

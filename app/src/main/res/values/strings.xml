@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WallpaperSetter</string>
+    <string name="app_name">Wallpaper Setter</string>
 
     <string-array
         name="Categories">

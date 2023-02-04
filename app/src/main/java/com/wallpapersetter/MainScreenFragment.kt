@@ -12,7 +12,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
 
-
+//Фрагмент выбора категории картинок
 class MainScreenFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.fragment_main_screen, container, false)
@@ -44,7 +44,7 @@ class MainScreenFragment : Fragment() {
                         throw IOException("Unexpected code $response")
                     }
                     else {
-                        val str = response.body()!!.string()
+                        val str = response.body!!.string()
                         val jsonData = JSONObject(str)//получили json массив
                         val hits = jsonData.get("hits") as JSONArray
                         val imageObject = hits[0] as JSONObject//одно изображение

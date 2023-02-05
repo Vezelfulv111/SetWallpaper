@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             setContentView(R.layout.activity_main)
             switchToMainScreenFragment()
-        }, 300)
+        }, 1500)
     }
 
     //фунция для перехода на 1й фрагмент

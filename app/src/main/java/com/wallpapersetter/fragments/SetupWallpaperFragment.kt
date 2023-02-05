@@ -23,7 +23,11 @@ class SetupWallpaperFragment: Fragment() {
         //получим ссылку на изображение, полученное при переходе с предыдущего фрагмента
         val imageURL = arguments?.getString("ImageUrl", "")!!//получили выбранную категорию при запуске фрагмента
         val image: ImageView = view.findViewById(R.id.icon) as ImageView
-        Picasso.get().load(imageURL).into(image)//загрузим изображение с сайта в imageview
+        Picasso.get()
+            .load(imageURL)
+            .placeholder(R.drawable.progress_animation)
+            .error(R.drawable.imageerror)
+            .into(image)//загрузим изображение с сайта в imageview
 
         val setupWallpaper: Button = view.findViewById(R.id.reloadButton) as Button
         setupWallpaper.setOnClickListener(){

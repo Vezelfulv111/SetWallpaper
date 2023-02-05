@@ -20,7 +20,7 @@ class ErrorFragment: Fragment() {
         val categoryname = arguments?.getString("categoryName", "")!!
 
         val reloadButton: Button = view.findViewById(R.id.reloadButton)
-        reloadButton.setOnClickListener() {
+        reloadButton.setOnClickListener() {//переходим на определенный фрагмент в зависимости от категории
             if (screenType == "CategoryScreenFragment" && categoryname.isNotEmpty()) {
                 (activity as MainActivity).switchToCategoryFragment(categoryname)
             }

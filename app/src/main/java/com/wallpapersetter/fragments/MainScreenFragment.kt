@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridView
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import com.wallpapersetter.MainActivity
 import com.wallpapersetter.R
@@ -36,7 +37,7 @@ class MainScreenFragment : Fragment() {
         val key = resources.getString(R.string.requestKey)
         val categoryArray = resources.getStringArray(R.array.Categories)
         val category = categoryArray[id]
-        val requestUrl ="http://pixabay.com/api/?key=$key&category=$category&safesearch=true&per_page=3"
+        val requestUrl ="https://pixabay.com/api/?key=$key&category=$category&safesearch=true&per_page=3"
         val request: Request = Request.Builder()
             .url(requestUrl)
             .get()
@@ -60,6 +61,9 @@ class MainScreenFragment : Fragment() {
                         UrlList.add(imageUrl)//добавим в список ссылку на выбранную картинку
                         CategoryList.add(category)
                         (activity as MainActivity).runOnUiThread {//для работы с интерфейсом необходимо перейти на основной поток
+                            //прогресс бар убирается в случае успешного запроса
+                            val progressBar = view?.findViewById(R.id.progressBar) as ProgressBar
+                            progressBar.visibility = View.GONE
                             val simpleGrid = view?.findViewById(R.id.mainGridView) as GridView
                             val customAdapter = ChooseAdapter(
                                 view!!.context,

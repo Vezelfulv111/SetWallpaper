@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.wallpapersetter.MainActivity
@@ -51,6 +52,9 @@ class CategoryScreenFragment : Fragment() {
                             val jsonData = JSONObject(str)//получили json массив
                             val hits = jsonData.get("hits") as JSONArray
                             (activity as MainActivity).runOnUiThread {
+                               //прогресс бар убирается в случае успешного запроса
+                               val progressBar = view?.findViewById(R.id.progressBar) as ProgressBar
+                               progressBar.visibility = View.GONE
                                val simpleGrid = view?.findViewById(R.id.simpleGridView) as GridView
                                val customAdapter = CategoryAdapter(view!!.context, hits, activity as MainActivity)
                                simpleGrid.adapter = customAdapter

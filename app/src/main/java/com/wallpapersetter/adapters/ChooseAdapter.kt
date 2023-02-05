@@ -31,19 +31,24 @@ class  ChooseAdapter(
         return position.toLong()
     }
 
-    override fun getView(position: Int, View: View?, parent: ViewGroup?): View? {
+    override fun getView(position: Int, View: View?, parent: ViewGroup?): View {
         var convertView: View? = View
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.fragment_choose_adapterr, parent, false)
         }
 
         val image: ImageView = convertView?.findViewById(R.id.CategoryImage) as ImageView
-        val categoryName: TextView = convertView?.findViewById(R.id.categoryName) as TextView
-        Picasso.get().load(items[position]).into(image)
+        val categoryName: TextView = convertView.findViewById(R.id.categoryName) as TextView
+        Picasso.get()
+            .load(items[position])
+            .resize(300, 300).centerCrop()
+            .placeholder(R.drawable.progress_animation)//прогресс бар отображается пока изображение не загрузится
+            .error(R.drawable.imageerror)//изображение в случаее ошибки
+            .into(image)
         categoryName.text = category[position]
 
 
-        image.setOnClickListener() {
+        image.setOnClickListener {
             MainActivity.switchToCategoryFragment(category[position])//переход на экран с картинками из 1й категории
         }
 

@@ -4,32 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:tag="SetupWallpaperFragment"
+    android:tag="ErrorFragment"
     android:theme="@style/ThemeOverlay.WallpaperSetter.FullscreenContainer"
-    tools:context=".fragments.MainScreenFragment">
+    tools:context=".fragments.ErrorFragment">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="186dp"
+            android:layout_height="107dp"
             android:layout_margin="20dp"
             android:layout_weight="1"
             android:scaleType="centerInside"
-            app:srcCompat="@drawable/imageerror" />
+            app:srcCompat="@drawable/spash_scren_logo" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="182dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:minLines="2"
+            android:text="Случилась ошибка. Загрузить снова?" />
 
         <Button
             android:id="@+id/reloadButton"
-            android:layout_width="wrap_content"
+            android:layout_width="176dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
-            android:text="Установить на обои" />
+            android:text="Загрузить" />
 
     </LinearLayout>
 

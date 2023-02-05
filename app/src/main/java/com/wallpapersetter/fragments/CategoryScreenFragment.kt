@@ -14,6 +14,7 @@ import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
+import java.util.concurrent.TimeUnit
 
 
 //Фрагмент отображения картинок из выбранной категории
@@ -40,6 +41,7 @@ class CategoryScreenFragment : Fragment() {
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 e.printStackTrace()
+                (activity as MainActivity).switchToErrorFragment("CategoryScreenFragment",id);
             }
             override fun onResponse(call: Call, response: Response) {
                 response.use {

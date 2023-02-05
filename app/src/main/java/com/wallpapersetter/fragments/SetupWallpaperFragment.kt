@@ -23,10 +23,10 @@ class SetupWallpaperFragment: Fragment() {
         //получим ссылку на изображение, полученное при переходе с предыдущего фрагмента
         var imageURL = ""
         imageURL = arguments?.getString("ImageUrl", "")!!//получили выбранную категорию при запуске фрагмента
-        val image: ImageView = view.findViewById(R.id.chosenImage) as ImageView
+        val image: ImageView = view.findViewById(R.id.icon) as ImageView
         Picasso.get().load(imageURL).into(image)//загрузим изображение с сайта в imageview
 
-        val setupWallpaper: Button = view.findViewById(R.id.setupWallpaper) as Button
+        val setupWallpaper: Button = view.findViewById(R.id.reloadButton) as Button
         setupWallpaper.setOnClickListener(){
             //для установки изображения на обои необходимо получить bitmap изображения
             Picasso.get().load(imageURL).into(object : com.squareup.picasso.Target {

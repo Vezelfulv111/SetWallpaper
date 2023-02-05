@@ -6,6 +6,6 @@
 ## Скриншоты приложения 
 <img src="https://i.ibb.co/HN1KpZG/1.jpg" height=400/>
 <img src="https://i.ibb.co/dkFTdwR/2.jpg" height=400/>
-<img src="https://i.ibb.co/zx1vHd7/3.jpg" height=400/>
+<img src="https://i.ibb.co/y4SyqZQ/3.jpg" height=400/>
 <img src="https://i.ibb.co/4RJq1Sb/4.jpg" height=400/>
 <img src="https://i.ibb.co/H4tjjnt/5.jpg" height=400/>

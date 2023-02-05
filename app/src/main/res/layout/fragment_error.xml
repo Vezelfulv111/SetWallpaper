@@ -31,14 +31,14 @@
             android:layout_weight="1"
             android:gravity="center"
             android:minLines="2"
-            android:text="Случилась ошибка. Загрузить снова?" />
+            android:text="@string/Warning" />
 
         <Button
             android:id="@+id/reloadButton"
             android:layout_width="176dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
-            android:text="Загрузить" />
+            android:text="@string/Load" />
 
     </LinearLayout>
 

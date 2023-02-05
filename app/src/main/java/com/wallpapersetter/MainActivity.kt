@@ -24,9 +24,9 @@ class MainActivity : AppCompatActivity() {
 
     //фунция для перехода на 1й фрагмент
     fun switchToMainScreenFragment() {
-        var fragment = MainScreenFragment()
+        val fragment = MainScreenFragment()
         val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
-        ft.replace(android.R.id.content, fragment as MainScreenFragment, "MainScreenFragment")
+        ft.replace(android.R.id.content, fragment, "MainScreenFragment")
         ft.commit()
     }
 

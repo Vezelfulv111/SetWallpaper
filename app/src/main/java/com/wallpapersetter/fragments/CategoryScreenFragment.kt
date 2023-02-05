@@ -14,15 +14,13 @@ import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
-import java.util.concurrent.TimeUnit
 
 
 //Фрагмент отображения картинок из выбранной категории
 class CategoryScreenFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val view: View = inflater.inflate(R.layout.fragment_category_screen, container, false)
-        var categoryName = ""
-        categoryName = arguments?.getString("categoryNum", "backgrounds")!!//получили выбранную категорию при запуске фрагмента
+        val view = inflater.inflate(R.layout.fragment_category_screen, container, false)
+        val categoryName = arguments?.getString("categoryNum", "backgrounds")!!//получили выбранную категорию при запуске фрагмента
         val chosenCategory = view.findViewById(R.id.chosenCategory) as TextView
         chosenCategory.text = "Выберите обои:"
         setImages(categoryName)
@@ -41,7 +39,7 @@ class CategoryScreenFragment : Fragment() {
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 e.printStackTrace()
-                (activity as MainActivity).switchToErrorFragment("CategoryScreenFragment",id);
+                (activity as MainActivity).switchToErrorFragment("CategoryScreenFragment",id)
             }
             override fun onResponse(call: Call, response: Response) {
                 response.use {

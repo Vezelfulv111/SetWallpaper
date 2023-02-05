@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">Wallpaper Setter</string>
     <string name="requestKey">33106230-b104905cd7ff74ed17e2229af</string>
+    <string name="image_for_adapter">image for adapter</string>
+    <string name="textview">TextView</string>
+    <string name="СhooseCategory">Выберите категорию:</string>
+    <string name="SetTowallpaper">Установить на обои</string>
+    <string name="Warning">Случилась ошибка. Загрузить снова?</string>
+    <string name="Load">Загрузить</string>
+    <string name="ChosenCategory">Выбранная категория:</string>
 
 
     <string-array

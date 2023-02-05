@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.wallpapersetter.MainActivity
 import com.wallpapersetter.R
@@ -15,12 +14,10 @@ import com.wallpapersetter.R
 class ErrorFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val view: View = inflater.inflate(R.layout.fragment_error, container, false)
+        val view = inflater.inflate(R.layout.fragment_error, container, false)
 
-        var screenType = ""
-        screenType = arguments?.getString("ScreenType", "MainScreenFragment")!!//значение по умолчанию 1й -экран
-        var categoryname = ""
-        categoryname = arguments?.getString("categoryName", "")!!
+        val screenType = arguments?.getString("ScreenType", "MainScreenFragment")!!//значение по умолчанию 1й -экран
+        val categoryname = arguments?.getString("categoryName", "")!!
 
         val reloadButton: Button = view.findViewById(R.id.reloadButton)
         reloadButton.setOnClickListener() {

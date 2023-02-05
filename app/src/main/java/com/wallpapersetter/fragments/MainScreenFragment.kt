@@ -14,8 +14,6 @@ import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
-import java.net.InetAddress
-import java.util.concurrent.TimeUnit
 
 
 //Фрагмент выбора категории картинок. 1й экран после splashScreen
@@ -24,10 +22,9 @@ class MainScreenFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_main_screen, container, false)
         val urlList: ArrayList<String> = ArrayList(6)
         val categoryList: ArrayList<String> = ArrayList(6)
-        //for (id in 0 until 6) {
-            var id =0
+        for (id in 0 until 6) {
             loadCategories(id, urlList, categoryList)
-        //}
+        }
         return view
     }
 
@@ -35,7 +32,7 @@ class MainScreenFragment : Fragment() {
     //Функция вызывается n раз - где n - количество категорий.
     //С каждой категории выбирается 1 картинка и отображается в GridView
     private fun loadCategories(id: Int, UrlList: ArrayList<String>, CategoryList: ArrayList<String>) {
-        var client = OkHttpClient()
+        val client = OkHttpClient()
         val key = resources.getString(R.string.requestKey)
         val categoryArray = resources.getStringArray(R.array.Categories)
         val category = categoryArray[id]

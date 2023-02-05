@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="170dp"
         android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/image_for_adapter"
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/imageerror" />
 

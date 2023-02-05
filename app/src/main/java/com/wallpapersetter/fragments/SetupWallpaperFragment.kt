@@ -21,8 +21,7 @@ class SetupWallpaperFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.fragment_setup_wallaper, container, false)
         //получим ссылку на изображение, полученное при переходе с предыдущего фрагмента
-        var imageURL = ""
-        imageURL = arguments?.getString("ImageUrl", "")!!//получили выбранную категорию при запуске фрагмента
+        val imageURL = arguments?.getString("ImageUrl", "")!!//получили выбранную категорию при запуске фрагмента
         val image: ImageView = view.findViewById(R.id.icon) as ImageView
         Picasso.get().load(imageURL).into(image)//загрузим изображение с сайта в imageview
 
